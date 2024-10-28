@@ -4,8 +4,6 @@ defmodule Username do
     # ö becomes oe
     # ü becomes ue
     # ß becomes ss
-
-    # Please implement the sanitize/1 function
     do_sanitize(username, ~c"")
   end
 
@@ -13,22 +11,22 @@ defmodule Username do
 
   defp do_sanitize([v | reset], acc) do
     case v do
-      v when v in 97..122 ->
+      v when v in ?a..?z ->
         do_sanitize(reset, acc ++ [v])
 
-      v when v == 95 ->
+      v when v == ?_ ->
         do_sanitize(reset, acc ++ [v])
 
-      v when v == 228 ->
+      v when v ==  ?ä->
         do_sanitize(reset, acc ++ ~c"ae")
 
-      v when v == 246 ->
+      v when v == ?ö ->
         do_sanitize(reset, acc ++ ~c"oe")
 
-      v when v == 252 ->
+      v when v == ?ü ->
         do_sanitize(reset, acc ++ ~c"ue")
 
-      v when v == 223 ->
+      v when v == ?ß ->
         do_sanitize(reset, acc ++ ~c"ss")
 
       _ ->
