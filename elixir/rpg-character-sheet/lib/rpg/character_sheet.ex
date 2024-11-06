@@ -26,8 +26,7 @@ defmodule RPG.CharacterSheet do
 
     body = %{class: class, level: level, name: name}
 
-    IO.puts("Your character: #{inspect(body)}")
-    IO.inspect(body)
+    IO.inspect(body, label: "\nYour character")
   end
 
   defp get_console(question) do
